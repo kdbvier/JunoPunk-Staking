@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import { toast } from "react-toastify";
 import { useAppSelector } from "../../../../app/hooks";
 import InfoCard, { InfoCardProps } from "../../../../components/InfoCard";
 import NFTItem from "../../../../components/NFTItem";
@@ -24,6 +25,7 @@ import {
   FooterBalance,
   NftContainerTitle,
   NftContainer,
+  // StyledButton as Button,
 } from "./styled";
 
 const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
@@ -32,8 +34,9 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
 }) => {
   const [stakedNfts, setStakedNfts] = useState([]);
   const [stakingPeriod, setStakingPeriod] = useState(0);
+  const [sendingTx, setSendingTx] = useState(false);
   const { currentTime } = useContext(CurrentTimeContext);
-  const { runQuery } = useContract();
+  const { runQuery, runExecute } = useContract();
   const account = useAppSelector((state: any) => state.accounts.keplr);
 
   const fetchAllNfts = useCallback(
@@ -51,6 +54,21 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
     [fetchNfts, runQuery]
   );
 
+  const distributeRewards = useCallback(async () => {
+    if (sendingTx) return;
+    try {
+      setSendingTx(true);
+      await runExecute(Contracts.stakingContract, {
+        distribute_reward: {},
+      });
+      toast.success("Successfully Distributed!");
+    } catch (e) {
+      toast.error("Failed in Distribution!");
+    } finally {
+      setSendingTx(false);
+    }
+  }, [runExecute, sendingTx]);
+
   useEffect(() => {
     (async () => {
       if (account) {
@@ -60,8 +78,16 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
         get_state_info: {},
       });
       setStakingPeriod(stakingStateInfo?.staking_period || 0);
+      if (
+        (Number(stakingStateInfo?.last_distribute) +
+          Number(stakingStateInfo?.distribute_period)) *
+          1000 <
+        Number(new Date())
+      ) {
+        distributeRewards();
+      }
     })();
-  }, [runQuery, account, fetchAllNfts]);
+  }, [runQuery, account, fetchAllNfts, distributeRewards]);
 
   const infos: InfoCardProps[] = useMemo(() => {
     let stakedNftsCount = 0,
@@ -137,6 +163,7 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
             />
           ))}
         </NftContainer>
+        {/* <Button onClick={distributeRewards}>Distribute Rewards</Button> */}
       </Wrapper>
     </div>
   );

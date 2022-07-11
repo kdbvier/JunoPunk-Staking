@@ -61,7 +61,7 @@ export const NftContainerTitle = styled.div`
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  align-items: left;
+  text-align: left;
   color: #002cfa;
 `;
 
@@ -70,4 +70,29 @@ export const NftContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+`;
+
+export const StyledButton = styled.button`
+  color: white;
+  margin-top: 15px;
+  background-color: #40baff;
+  width: max-content;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 7px 24px;
+  &:focus {
+    outline: 0;
+  }
+  &:active {
+    transform: scale(0.9);
+    opacity: 0.8;
+    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+  }
 `;
