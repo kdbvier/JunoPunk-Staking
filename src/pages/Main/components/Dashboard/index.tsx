@@ -5,6 +5,7 @@ import Chart from "../../../../components/Chart";
 import TokenPrice from "../../../../components/TokenPrice";
 import { Contracts } from "../../../../constant/config";
 import useContract from "../../../../hooks/useContract";
+import useMatchBreakpoints from "../../../../hooks/useMatchBreakpoints";
 import {
   Wrapper,
   AirDropContainer,
@@ -18,6 +19,8 @@ import {
 
 const Dashboard: React.FC<{ tokens: any }> = ({ tokens }) => {
   const [rewardsAirdrop, setRewardsAirdrop] = useState();
+  const { isXs, isSm, isMd } = useMatchBreakpoints();
+  const isMobile = isXs || isSm || isMd;
   const account = useAppSelector((state) => state.accounts.keplr);
   const { runQuery, runExecute } = useContract();
 
@@ -56,7 +59,8 @@ const Dashboard: React.FC<{ tokens: any }> = ({ tokens }) => {
 
   return (
     <Wrapper>
-      <AirDropContainer>
+      <AirDropContainer isMobile={isMobile}>
+        {isMobile && <AirDropImage />}
         <AirDropContent>
           <AirDropTitle>Claim your PunkDrop!</AirDropTitle>
           <AirDropSubTitle>
@@ -70,7 +74,7 @@ const Dashboard: React.FC<{ tokens: any }> = ({ tokens }) => {
             rewardsAirdrop ? Number(rewardsAirdrop) / 1e6 : ""
           } $PUNK Token`}</ClaimButton>
         </AirDropContent>
-        <AirDropImage />
+        {!isMobile && <AirDropImage />}
       </AirDropContainer>
       <TokenPricesContainer>
         <TokenPrice tokenType="juno" />

@@ -11,6 +11,7 @@ import InfoCard, { InfoCardProps } from "../../../../components/InfoCard";
 import NFTItem from "../../../../components/NFTItem";
 import { Contracts } from "../../../../constant/config";
 import useContract from "../../../../hooks/useContract";
+import useMatchBreakpoints from "../../../../hooks/useMatchBreakpoints";
 import { CurrentTimeContext } from "../../index";
 
 import {
@@ -37,6 +38,8 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
   const [sendingTx, setSendingTx] = useState(false);
   const { currentTime } = useContext(CurrentTimeContext);
   const { runQuery, runExecute } = useContract();
+  const { isXs, isSm, isMd } = useMatchBreakpoints();
+  const isMobile = isXs || isSm || isMd;
   const account = useAppSelector((state: any) => state.accounts.keplr);
 
   const fetchAllNfts = useCallback(
@@ -130,12 +133,12 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
           <SubTitle>Unstaking Period 27 Days | Daily Payout 08:00 UTC</SubTitle>
         </TitleBar>
         <SubWrapper>
-          <InfoContainer>
+          <InfoContainer isMobile={isMobile}>
             {infos.map((info: InfoCardProps, index: number) => (
               <InfoCard key={index} {...info} />
             ))}
           </InfoContainer>
-          <FooterBar>
+          <FooterBar isMobile={isMobile}>
             <FooterContent>Total Punks Genesis NFT</FooterContent>
             <FooterBalance>145/500</FooterBalance>
           </FooterBar>

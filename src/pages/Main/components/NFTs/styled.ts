@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Card from "../../../../components/Card";
 
 export const Wrapper = styled(Card)`
@@ -9,6 +9,7 @@ export const TitleBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   margin-bottom: 30px;
 `;
 
@@ -35,19 +36,25 @@ export const SubWrapper = styled.div`
   position: relative;
 `;
 
-export const InfoContainer = styled.div`
-  display: flex;
+export const InfoContainer = styled.div<{ isMobile?: boolean }>`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-row-gap: 10px;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 35px;
 `;
 
-export const FooterBar = styled.div`
+export const FooterBar = styled.div<{ isMobile?: boolean }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: absolute;
-  bottom: 0;
+  /* ${({ isMobile }) =>
+    !isMobile &&
+    css`
+      position: absolute;
+      bottom: 0;
+    `} */
 `;
 
 export const FooterContent = styled(NormalText)``;

@@ -1,11 +1,67 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+import { BarIcon } from "../../../../components/SvgIcons";
 
-export const Wrapper = styled.div`
+const expandAnimation = keyframes`
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+`;
+
+const collapseAnimation = keyframes`
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+`;
+
+export const Wrapper = styled.div<{ isMobile?: boolean; expanded?: boolean }>`
   width: 315px;
+  max-width: 315px;
   padding-top: 47px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  background-color: #f2f8ff;
+  overflow: hidden;
+  ${({ isMobile }) =>
+    isMobile &&
+    css`
+      position: fixed;
+      z-index: 1;
+      width: 100%;
+    `}
+  animation: ${({ expanded }) =>
+    expanded
+      ? css`
+          ${expandAnimation} 500ms linear forwards
+        `
+      : css`
+          ${collapseAnimation} 500ms linear forwards
+        `};
+`;
+
+export const WrapperBackground = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+`;
+
+export const StyledBarIcon = styled(BarIcon)`
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 2;
 `;
 
 export const Logo = styled.div`
