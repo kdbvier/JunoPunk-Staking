@@ -43,9 +43,11 @@ export const Wrapper = styled.div<{ isMobile?: boolean; expanded?: boolean }>`
 `;
 
 export const MenuContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 `;
 
 export const WrapperBackground = styled.div`
@@ -128,6 +130,18 @@ export const MenuItem = styled(SidebarItem)<{ selected: boolean }>`
 
 export const ConnectWallet = styled(SidebarItem)<{ connected?: boolean }>`
   margin-top: 117px;
+  margin-bottom: 50px;
   color: ${({ connected }) => (connected ? "#FF4842" : "#002dff")};
   cursor: pointer;
+`;
+
+export const SidebarFooter = styled.div`
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 13px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  position: absolute;
+  bottom: 10px;
 `;

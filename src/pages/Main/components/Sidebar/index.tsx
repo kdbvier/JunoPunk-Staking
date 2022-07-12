@@ -9,6 +9,7 @@ import {
   Logo,
   MenuItem,
   StyledBarIcon as BarIcon,
+  SidebarFooter,
 } from "./styled";
 import Menus from "./menus";
 import { MenuType } from "./types";
@@ -57,6 +58,9 @@ const Sidebar: React.FC = () => {
             </MenuItem>
           ))}
           <ConnectWalletButton />
+          <SidebarFooter>
+            Made with 💚 in collaboration with Hopers.io Team!
+          </SidebarFooter>
         </MenuContainer>
       </Wrapper>
     </>
