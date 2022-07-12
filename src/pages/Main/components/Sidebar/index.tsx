@@ -4,6 +4,7 @@ import useMatchBreakpoints from "../../../../hooks/useMatchBreakpoints";
 import ConnectWalletButton from "./ConnectWalletButton";
 import {
   Wrapper,
+  MenuContainer,
   WrapperBackground,
   Logo,
   MenuItem,
@@ -31,7 +32,9 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {isMobile && <BarIcon onClick={() => setExpanded((prev) => !prev)} />}
+      {isMobile && !expanded && (
+        <BarIcon onClick={() => setExpanded((prev) => !prev)} />
+      )}
       {isMobile && expanded && (
         <WrapperBackground
           onClick={(e) => {
@@ -41,18 +44,20 @@ const Sidebar: React.FC = () => {
         />
       )}
       <Wrapper isMobile={isMobile} expanded={!isMobile || expanded}>
-        <Logo />
-        {Menus.map((menuItem: MenuType, index: number) => (
-          <MenuItem
-            selected={selectedMenuItem === menuItem.id}
-            onClick={() => handleClickMenuItem(menuItem)}
-            key={index}
-          >
-            <menuItem.icon />
-            {menuItem.title}
-          </MenuItem>
-        ))}
-        <ConnectWalletButton />
+        <MenuContainer>
+          <Logo />
+          {Menus.map((menuItem: MenuType, index: number) => (
+            <MenuItem
+              selected={selectedMenuItem === menuItem.id}
+              onClick={() => handleClickMenuItem(menuItem)}
+              key={index}
+            >
+              <menuItem.icon />
+              {menuItem.title}
+            </MenuItem>
+          ))}
+          <ConnectWalletButton />
+        </MenuContainer>
       </Wrapper>
     </>
   );

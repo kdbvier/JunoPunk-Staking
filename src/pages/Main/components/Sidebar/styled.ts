@@ -22,13 +22,9 @@ const collapseAnimation = keyframes`
 export const Wrapper = styled.div<{ isMobile?: boolean; expanded?: boolean }>`
   width: 315px;
   max-width: 315px;
-  padding-top: 47px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: 100vh;
   background-color: #f2f8ff;
-  overflow: hidden;
+  overflow-y: auto;
   ${({ isMobile }) =>
     isMobile &&
     css`
@@ -44,6 +40,12 @@ export const Wrapper = styled.div<{ isMobile?: boolean; expanded?: boolean }>`
       : css`
           ${collapseAnimation} 500ms linear forwards
         `};
+`;
+
+export const MenuContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const WrapperBackground = styled.div`
@@ -71,6 +73,7 @@ export const Logo = styled.div`
   background-position: center;
   width: 100%;
   height: 51px;
+  margin-top: 47px;
   margin-bottom: 36px;
 `;
 
