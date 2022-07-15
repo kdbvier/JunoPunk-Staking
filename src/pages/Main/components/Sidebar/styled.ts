@@ -1,47 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 import { BarIcon } from "../../../../components/SvgIcons";
 
-const expandAnimation = keyframes`
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-`;
-
-const collapseAnimation = keyframes`
-  from {
-    width: 100%;
-  }
-  to {
-    width: 0;
-  }
-`;
-
-export const Wrapper = styled.div<{ isMobile?: boolean; expanded?: boolean }>`
-  width: 315px;
-  max-width: 315px;
-  height: 100vh;
-  background-color: #f2f8ff;
-  overflow-y: auto;
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      position: fixed;
-      z-index: 1;
-      width: 100%;
-    `}
-  animation: ${({ expanded }) =>
-    expanded
-      ? css`
-          ${expandAnimation} 500ms linear forwards
-        `
-      : css`
-          ${collapseAnimation} 500ms linear forwards
-        `};
-`;
-
 export const MenuContainer = styled.div`
   position: relative;
   display: flex;
@@ -144,4 +103,55 @@ export const SidebarFooter = styled.div`
   color: #000000;
   position: absolute;
   bottom: 10px;
+`;
+
+const expandAnimation = keyframes`
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+`;
+
+const collapseAnimation = keyframes`
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+`;
+
+export const Wrapper = styled.div<{ isMobile?: boolean; expanded?: boolean }>`
+  width: 315px;
+  max-width: 315px;
+  height: 100vh;
+  background-color: #f2f8ff;
+  overflow-y: auto;
+  animation: ${({ expanded }) =>
+    expanded
+      ? css`
+          ${expandAnimation} 500ms linear forwards
+        `
+      : css`
+          ${collapseAnimation} 500ms linear forwards
+        `};
+  ${({ isMobile }) =>
+    isMobile &&
+    css`
+      position: fixed;
+      z-index: 1;
+      width: 100%;
+      ${Logo} {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      ${MenuItem} {
+        margin-top: 10px;
+      }
+      ${ConnectWallet} {
+        margin-top: 20px;
+      }
+    `}
 `;

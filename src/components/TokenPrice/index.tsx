@@ -36,7 +36,7 @@ const Arrow = ({ fill, transform }: { fill: string; transform: any }) => (
 );
 
 const TokenPrice: React.FC<TokenPriceProps> = ({ tokenType }) => {
-  const price = useAppSelector((state) => state.tokenPrices.price[tokenType]);
+  const price = useAppSelector((state) => state.tokenPrices.price?.[tokenType]);
   const tokenImage = price?.image.large || "";
   const marketData = price?.market_data;
   const tokenPrice = marketData?.current_price.usd || 0;
