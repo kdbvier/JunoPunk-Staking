@@ -35,6 +35,7 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
 }) => {
   const [stakedNfts, setStakedNfts] = useState([]);
   const [stakingPeriod, setStakingPeriod] = useState(0);
+  const [totalStaked, setTotalStaked] = useState(0);
   const [sendingTx, setSendingTx] = useState(false);
   const { currentTime } = useContext(CurrentTimeContext);
   const { runQuery, runExecute } = useContract();
@@ -81,6 +82,7 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
         get_state_info: {},
       });
       setStakingPeriod(stakingStateInfo?.staking_period || 0);
+      setTotalStaked(stakingStateInfo?.total_staked || 0);
       if (
         (Number(stakingStateInfo?.last_distribute) +
           Number(stakingStateInfo?.distribute_period)) *
@@ -139,8 +141,8 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
             ))}
           </InfoContainer>
           <FooterBar isMobile={isMobile}>
-            <FooterContent>Total Punks Genesis NFT</FooterContent>
-            <FooterBalance>145/500</FooterBalance>
+            <FooterContent>Total Punks Staked NFT</FooterContent>
+            <FooterBalance>{`${totalStaked}/500`}</FooterBalance>
           </FooterBar>
         </SubWrapper>
         <NftContainerTitle>My NFTs</NftContainerTitle>

@@ -16,7 +16,7 @@ const Menus: MenuType[] = [
   },
   {
     id: "punkToken",
-    title: "$Punk Token",
+    title: "$PunkDrop Checker",
     icon: TokenIcon,
   },
   {

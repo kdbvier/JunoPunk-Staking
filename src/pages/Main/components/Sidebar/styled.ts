@@ -87,8 +87,23 @@ export const MenuItem = styled(SidebarItem)<{ selected: boolean }>`
         `}
 `;
 
-export const ConnectWallet = styled(SidebarItem)<{ connected?: boolean }>`
+export const SocialIcons = styled.div`
   margin-top: 117px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+export const StyledSocialIconSvg = styled.svg`
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin: 0 15px;
+`;
+
+export const ConnectWallet = styled(SidebarItem)<{ connected?: boolean }>`
+  margin-top: 10px;
   margin-bottom: 50px;
   color: ${({ connected }) => (connected ? "#FF4842" : "#002dff")};
   cursor: pointer;
@@ -150,7 +165,7 @@ export const Wrapper = styled.div<{ isMobile?: boolean; expanded?: boolean }>`
       ${MenuItem} {
         margin-top: 10px;
       }
-      ${ConnectWallet} {
+      ${SocialIcons} {
         margin-top: 20px;
       }
     `}
