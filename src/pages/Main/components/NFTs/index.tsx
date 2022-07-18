@@ -94,6 +94,28 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
     })();
   }, [runQuery, account, fetchAllNfts, distributeRewards]);
 
+  const handleClaim = async () => {
+    if (sendingTx) return;
+    const stakedIds: string[] = [];
+    stakedNfts.forEach((nft: any) => {
+      if (nft.status === "Staked") stakedIds.push(nft.token_id);
+    });
+    if (stakedIds.length) {
+      setSendingTx(true);
+      try {
+        await runExecute(Contracts.stakingContract, {
+          get_reward: { token_ids: stakedIds },
+        });
+        fetchAllNfts(account.address);
+        toast.success("Successfully claimed!");
+      } catch (e) {
+        toast.error("Failed in Claiming!");
+      } finally {
+        setSendingTx(false);
+      }
+    }
+  };
+
   const infos: InfoCardProps[] = useMemo(() => {
     let stakedNftsCount = 0,
       unstakingNftsCount = 0,
@@ -122,9 +144,11 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
         contents: [`${(totalRewards / 1e6).toFixed(2)} $PUNK Available`],
         buttonOption: {
           title: "Claim",
+          onClick: handleClaim,
         },
       },
     ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stakedNfts, tokens]);
 
   return (
