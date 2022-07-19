@@ -25,10 +25,10 @@ function App() {
       enabledWalletTypes={[WalletType.Keplr, WalletType.WalletConnectKeplr]}
       localStorageKey="keplr-wallet"
       walletConnectClientMeta={{
-        name: "Bridge Keplr Metamask",
-        description: "Bridge Keplr Metamask",
+        name: "Juno Punks App",
+        description: "Juno Punks App",
         url: window.location.origin,
-        icons: [""],
+        icons: [`${window.location.origin}/logo.png`],
       }}
     >
       <div className="main">

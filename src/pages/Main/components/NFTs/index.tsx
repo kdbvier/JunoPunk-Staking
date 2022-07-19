@@ -156,7 +156,9 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
       <Wrapper>
         <TitleBar>
           <MainTitle>$PUNK NFTs</MainTitle>
-          <SubTitle>Unstaking Period 27 Days | Daily Payout 08:00 UTC</SubTitle>
+          <SubTitle>
+            Unstaking Period 27 Days | Weekly Payout 08:00 UTC
+          </SubTitle>
         </TitleBar>
         <SubWrapper>
           <InfoContainer isMobile={isMobile}>

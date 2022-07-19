@@ -73,10 +73,14 @@ export const NftContainerTitle = styled.div`
 `;
 
 export const NftContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* display: flex;
   flex-wrap: wrap;
+  justify-content: space-between; */
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+  grid-gap: 20px;
 `;
 
 export const StyledButton = styled.button`
