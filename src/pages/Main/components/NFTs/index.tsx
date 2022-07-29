@@ -214,14 +214,6 @@ const NFTs: React.FC<{ tokens: any; fetchNfts: any }> = ({
             fetchNFT={fetchAllNfts}
           />
         ))}
-        <NFTItem
-          id={"JunoPunks.36"}
-          item={{ token_id: "JunoPunks.36" }}
-          rarityRanks={rarityRanks}
-          unStakingPeriod={stakingPeriod}
-          currentTime={currentTime}
-          fetchNFT={fetchAllNfts}
-        />
       </NftContainer>
       {/* <Button onClick={distributeRewards}>Distribute Rewards</Button> */}
     </Wrapper>
