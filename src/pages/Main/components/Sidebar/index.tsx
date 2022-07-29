@@ -15,6 +15,7 @@ import {
 } from "./styled";
 import Menus from "./menus";
 import { MenuType } from "./types";
+import { useAppSelector } from "../../../../app/hooks";
 
 const TwitterIcon = ({ ...props }) => (
   <StyledSocialIconSvg
@@ -53,21 +54,30 @@ const DiscordIcon = ({ ...props }) => (
 );
 
 const Sidebar: React.FC = () => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState<string>(Menus[0].id);
+  // const [selectedMenuItem, setSelectedMenuItem] = useState<string>(Menus[0].id);
   const { isXs, isSm, isMd, isLg } = useMatchBreakpoints();
   const isMobile = isXs || isSm || isMd || isLg;
   const [expanded, setExpanded] = useState(isMobile);
+  const selectedMenuItem = useAppSelector(
+    (state) => state.elementViewState.target
+  );
+
+  useEffect(() => {
+    setExpanded(isMobile);
+  }, [isMobile]);
 
   const handleClickMenuItem = (menuItem: MenuType) => {
     if (menuItem.link) {
       window.open(menuItem.link);
     } else {
-      setSelectedMenuItem(menuItem.id);
+      const targetElement = document.getElementById(menuItem.id);
+      targetElement?.scrollIntoView({
+        behavior: "smooth",
+      });
+      setExpanded(false);
+      // setSelectedMenuItem(menuItem.id);
     }
   };
-  useEffect(() => {
-    setExpanded(isMobile);
-  }, [isMobile]);
 
   return (
     <>

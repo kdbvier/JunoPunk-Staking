@@ -19,6 +19,8 @@ import {
   NFTItemOperationButton,
   NFTItemOperationCell,
   NFTItemTransferAddress,
+  RarityRankContainer,
+  RarityRankContent,
   // JunoWalletIndicator,
 } from "./styled";
 import { useAppSelector } from "../../app/hooks";
@@ -29,6 +31,7 @@ export interface NFTItemProps {
   unStakingPeriod?: number;
   fetchNFT?: any;
   currentTime: number;
+  rarityRanks: any;
 }
 
 export const NFTItemStatus = {
@@ -51,17 +54,26 @@ export const OperationButtonType = {
   UNSTAKE: "Unstake",
 };
 
+const getTokenIdNumber = (id: string): string => {
+  if (!id) return "";
+  return id.split(".").pop() || "";
+};
+
 export default function NFTItem({
   id,
   item,
   unStakingPeriod,
   fetchNFT,
   currentTime,
+  rarityRanks,
 }: NFTItemProps) {
   const [sendingTx, setSendingTx] = useState(false);
   const [transferTarget, setTransferTarget] = useState("");
   const { runExecute } = useContract();
   const account = useAppSelector((state: any) => state.accounts.keplr);
+
+  const tokenIdNumber = Number(getTokenIdNumber(item.token_id) || 0);
+  const tokenRarityRank = rarityRanks?.[tokenIdNumber];
 
   const url = `https://hopegalaxy.mypinata.cloud/ipfs/Qmbsmj4q3cAZdqkFvFBq4zBrHtzXf4FzDTMQQm9MHcB2yb/${
     id.split(".").pop() || ""
@@ -207,6 +219,12 @@ export default function NFTItem({
   return (
     <NFTItemWrapper nftItemStatus={nftStatus}>
       <NFTItemBadge nftItemStatus={nftStatus}>{nftStatus}</NFTItemBadge>
+      {tokenRarityRank && (
+        <RarityRankContainer>
+          <RarityRankContent bold>Rank</RarityRankContent>
+          <RarityRankContent>{`#${tokenRarityRank.rank}`}</RarityRankContent>
+        </RarityRankContainer>
+      )}
       <NFTItemImageDownloadIcon
         onClick={downloadImage}
         width="39"

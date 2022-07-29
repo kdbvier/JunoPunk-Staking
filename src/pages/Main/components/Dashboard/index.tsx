@@ -4,6 +4,7 @@ import { useAppSelector } from "../../../../app/hooks";
 import Chart from "../../../../components/Chart";
 import TokenPrice from "../../../../components/TokenPrice";
 import { Contracts } from "../../../../constant/config";
+import { PAGES } from "../../../../constant/pages";
 import useContract from "../../../../hooks/useContract";
 import useMatchBreakpoints from "../../../../hooks/useMatchBreakpoints";
 import {
@@ -12,10 +13,12 @@ import {
   AirDropContent,
   AirDropTitle,
   AirDropSubTitle,
+  ClaimButtonContainer,
   ClaimButton,
   AirDropImage,
   TokenPricesContainer,
   ClaimCheckerContainer,
+  ClaimCheckerItem,
   ClaimCheckerTitle,
   ClaimCheckerContent,
   TokenIdInputerContainer,
@@ -127,52 +130,89 @@ const Dashboard: React.FC<{ tokens: any }> = ({ tokens }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper id={PAGES.DASHBOARD}>
       <AirDropContainer isMobile={isMobile}>
         {isMobile && <AirDropImage />}
         <AirDropContent>
           <AirDropTitle>Claim your PunkDrop!</AirDropTitle>
           <AirDropSubTitle>
-            All the junoPunks NFT holders are eligible to claim the $PUNKS
-            airdrop
+            All the junoPunks NFT and Martians holders are eligible to claim the
+            $PUNKS airdrop
           </AirDropSubTitle>
-          <ClaimButton
-            disabled={!account || !Number(rewardsAirdrop)}
-            onClick={handleClaimAirdrop}
-          >{`Claim ${
-            rewardsAirdrop ? Number(rewardsAirdrop) / 1e6 : ""
-          } $PUNK Token`}</ClaimButton>
+          <ClaimButtonContainer>
+            <ClaimButton
+              disabled={!account || !Number(rewardsAirdrop)}
+              onClick={handleClaimAirdrop}
+            >
+              {/* {`Claim ${
+                rewardsAirdrop ? Number(rewardsAirdrop) / 1e6 : ""
+              } $PUNK Token`} */}
+              $PUNK GENESIS
+            </ClaimButton>
+            <ClaimButton>$PUNK MARTIANS</ClaimButton>
+          </ClaimButtonContainer>
         </AirDropContent>
         {!isMobile && <AirDropImage />}
       </AirDropContainer>
       <ClaimCheckerContainer>
-        <ClaimCheckerTitle>Find your NFT</ClaimCheckerTitle>
-        <ClaimCheckerContent>
-          <TokenIdInputerContainer>
-            <TokenIdInputer
-              value={`${TOKEN_ID}.${tokenIdNumber}`}
-              onChange={handleChangeSearchTokenId}
-              onKeyUp={handleKeyUp}
-              placeholder="Please input token id"
-            />
-            <SearchIcon onClick={handleCheckClaim} />
-          </TokenIdInputerContainer>
-          {claimCheckResult && (
-            <NftItem>
-              <NftItemImage src={url} alt="" />
-              <NftItemContents>
-                <NftItemContent>{`JunoPunks.${claimCheckResult.id}`}</NftItemContent>
-                <NftItemContent
-                  backgroundColor={
-                    claimCheckResult.claimStatus ? "#4062FF" : "#66C24F"
-                  }
-                >
-                  {claimCheckResult.claimStatus ? "Claimed" : "Claimable"}
-                </NftItemContent>
-              </NftItemContents>
-            </NftItem>
-          )}
-        </ClaimCheckerContent>
+        <ClaimCheckerItem>
+          <ClaimCheckerTitle>Find your Genesis Punks</ClaimCheckerTitle>
+          <ClaimCheckerContent>
+            <TokenIdInputerContainer>
+              <TokenIdInputer
+                value={`${TOKEN_ID}.${tokenIdNumber}`}
+                onChange={handleChangeSearchTokenId}
+                onKeyUp={handleKeyUp}
+                placeholder="Please input token id"
+              />
+              <SearchIcon onClick={handleCheckClaim} />
+            </TokenIdInputerContainer>
+            {claimCheckResult && (
+              <NftItem>
+                <NftItemImage src={url} alt="" />
+                <NftItemContents>
+                  <NftItemContent>{`JunoPunks.${claimCheckResult.id}`}</NftItemContent>
+                  <NftItemContent
+                    backgroundColor={
+                      claimCheckResult.claimStatus ? "#4062FF" : "#66C24F"
+                    }
+                  >
+                    {claimCheckResult.claimStatus ? "Claimed" : "Claimable"}
+                  </NftItemContent>
+                </NftItemContents>
+              </NftItem>
+            )}
+          </ClaimCheckerContent>
+        </ClaimCheckerItem>
+        <ClaimCheckerItem>
+          <ClaimCheckerTitle>Find your Martians Punks</ClaimCheckerTitle>
+          <ClaimCheckerContent>
+            <TokenIdInputerContainer>
+              <TokenIdInputer
+                // value={`${TOKEN_ID}.${tokenIdNumber}`}
+                // onChange={handleChangeSearchTokenId}
+                // onKeyUp={handleKeyUp}
+                placeholder="Please input token id"
+              />
+              <SearchIcon onClick={handleCheckClaim} />
+            </TokenIdInputerContainer>
+            {/* {claimCheckResult && (
+              <NftItem>
+                <NftItemImage src={url} alt="" />
+                <NftItemContents>
+                  <NftItemContent>{`JunoPunks.${claimCheckResult.id}`}</NftItemContent>
+                  <NftItemContent
+                    backgroundColor={
+                      claimCheckResult.claimStatus ? "#4062FF" : "#66C24F"
+                    }
+                  >
+                    {claimCheckResult.claimStatus ? "Claimed" : "Claimable"}
+                  </NftItemContent>
+                </NftItemContents>
+              </NftItem>
+            )} */}
+          </ClaimCheckerContent>
+        </ClaimCheckerItem>
       </ClaimCheckerContainer>
       <TokenPricesContainer>
         <TokenPrice tokenType="juno" />

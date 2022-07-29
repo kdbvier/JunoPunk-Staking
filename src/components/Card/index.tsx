@@ -1,15 +1,18 @@
 import React from "react";
-
 import { Wrapper } from "./styled";
 
-const Card: React.FC = ({
-  className,
-  children,
-}: {
+interface CardProps {
   className?: string;
+  id?: string;
   children?: any;
-}) => {
-  return <Wrapper className={className}>{children}</Wrapper>;
+}
+
+const Card: React.FC<CardProps> = ({ className, id, children }) => {
+  return (
+    <Wrapper id={id} className={className}>
+      {children}
+    </Wrapper>
+  );
 };
 
 export default Card;

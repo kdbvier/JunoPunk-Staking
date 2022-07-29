@@ -49,7 +49,7 @@ export const NFTItemBadge = styled.div<{ nftItemStatus: string }>`
   font-weight: 700;
   font-size: 20px;
   text-align: center;
-  width: 130px;
+  width: 120px;
   height: 30px;
   border-radius: 0px 0px 10px 0px;
   display: flex;
@@ -152,4 +152,28 @@ export const JunoWalletIndicator = styled.span`
   font-weight: 300;
   font-size: 16px;
   line-height: 43px;
+`;
+
+export const RarityRankContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 50px;
+`;
+
+export const RarityRankContent = styled.div<{ bold?: boolean }>`
+  font-size: 14px;
+  line-height: 36px;
+  font-weight: normal;
+
+  ${({ bold }) =>
+    bold &&
+    css`
+      font-weight: bold;
+    `}
+  &:first-child {
+    padding-right: 5px;
+  }
 `;

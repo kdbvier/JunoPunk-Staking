@@ -48,6 +48,14 @@ export const AirDropSubTitle = styled.div`
   margin: 5px 0 19px;
 `;
 
+export const ClaimButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
 export const ClaimButton = styled.button`
   color: white;
   background-color: #40baff;
@@ -58,6 +66,7 @@ export const ClaimButton = styled.button`
   appearance: none;
   cursor: pointer;
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  margin: 10px;
   &:focus {
     outline: 0;
   }
@@ -78,8 +87,15 @@ export const AirDropImage = styled.div`
 export const ClaimCheckerContainer = styled.div`
   margin: 30px 0;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+export const ClaimCheckerItem = styled.div`
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 export const ClaimCheckerTitle = styled.div`

@@ -34,8 +34,8 @@ export const Logo = styled.div`
   background-position: center;
   width: 100%;
   height: 51px;
-  margin-top: 47px;
-  margin-bottom: 36px;
+  margin-top: 40px;
+  margin-bottom: 30;
 `;
 
 export const StyledSvg = styled.svg`
@@ -46,7 +46,7 @@ export const StyledSvg = styled.svg`
 
 export const SidebarItem = styled.div`
   width: 207px;
-  height: 64px;
+  height: 50px;
   position: relative;
   font-weight: 700;
   font-size: 16px;
@@ -60,7 +60,7 @@ export const SidebarItem = styled.div`
 `;
 
 export const MenuItem = styled(SidebarItem)<{ selected: boolean }>`
-  margin-top: 17px;
+  margin-top: 10px;
   cursor: pointer;
   border-radius: 16px;
   transition: all 0.3s;
@@ -88,7 +88,7 @@ export const MenuItem = styled(SidebarItem)<{ selected: boolean }>`
 `;
 
 export const SocialIcons = styled.div`
-  margin-top: 117px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,6 +144,7 @@ export const Wrapper = styled.div<{ isMobile?: boolean; expanded?: boolean }>`
   height: 100vh;
   background-color: #f2f8ff;
   overflow-y: auto;
+  overflow-x: hidden;
   animation: ${({ expanded }) =>
     expanded
       ? css`
