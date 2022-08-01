@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 import { formatDurationTime } from "../../utils/formatTime";
 import useContract from "../../hooks/useContract";
-import { Contracts } from "../../constant/config";
 
 import {
   NFTItemWrapper,
@@ -32,6 +31,10 @@ export interface NFTItemProps {
   fetchNFT?: any;
   currentTime: number;
   rarityRanks: any;
+  options: {
+    nftAddress: string;
+    stakingAddress: string;
+  };
 }
 
 export const NFTItemStatus = {
@@ -66,6 +69,7 @@ export default function NFTItem({
   fetchNFT,
   currentTime,
   rarityRanks,
+  options,
 }: NFTItemProps) {
   const [sendingTx, setSendingTx] = useState(false);
   const [transferTarget, setTransferTarget] = useState("");
@@ -135,9 +139,9 @@ export default function NFTItem({
     if (nftStatus === NFTItemStatus.AVAILABLE) {
       try {
         setSendingTx(true);
-        await runExecute(Contracts.nftContract, {
+        await runExecute(options.nftAddress, {
           send_nft: {
-            contract: Contracts.stakingContract,
+            contract: options.stakingAddress,
             token_id: item.token_id,
             msg: btoa("staking"),
           },
@@ -154,7 +158,7 @@ export default function NFTItem({
     } else if (nftStatus === NFTItemStatus.STAKED) {
       try {
         setSendingTx(true);
-        await runExecute(Contracts.stakingContract, {
+        await runExecute(options.stakingAddress, {
           unstake_nft: {
             token_id: item.token_id,
           },
@@ -171,7 +175,7 @@ export default function NFTItem({
     } else if (nftStatus === NFTItemStatus.UNSTAKED && isPassedPeriod) {
       try {
         setSendingTx(true);
-        await runExecute(Contracts.stakingContract, {
+        await runExecute(options.stakingAddress, {
           withdraw_nft: {
             token_id: item.token_id,
           },
@@ -192,7 +196,7 @@ export default function NFTItem({
     if (transferDisabled || !transferTarget) return;
     try {
       setSendingTx(true);
-      await runExecute(Contracts.nftContract, {
+      await runExecute(options.nftAddress, {
         transfer_nft: {
           recipient: transferTarget,
           token_id: item.token_id,

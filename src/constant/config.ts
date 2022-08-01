@@ -35,9 +35,19 @@ const chainPresets = {
 
 export default chainPresets["juno-mainnet"];
 
-export const Contracts = {
-  nftContract:
-    "juno1e229el8t4lu4rx7xeekc77zspxa2gz732ld0e6a5q0sr0l3gm78stuvc5g",
-  stakingContract:
-    "juno1m7uwvetjxr2efmlenvk2pzgsyzpnetlta95lx4rmmest6y0x8nvqh5he5k",
+export type ContractType = {
+  [P in "genisis" | "martians"]: string;
+};
+
+export const Contracts: {
+  [P in "nftContracts" | "stakingContracts"]: ContractType;
+} = {
+  nftContracts: {
+    genisis: "juno1e229el8t4lu4rx7xeekc77zspxa2gz732ld0e6a5q0sr0l3gm78stuvc5g",
+    martians: "juno10u3st6w8tx95ejtq6drffk6zy68z76m32lapq9m5shj7gu0y5mxswj6we0",
+  },
+  stakingContracts: {
+    genisis: "juno1m7uwvetjxr2efmlenvk2pzgsyzpnetlta95lx4rmmest6y0x8nvqh5he5k",
+    martians: "juno1s0tewcu485syneth968n7hz3vx23t24k904j26ae3lw75vzv7d3qtg8sp3",
+  },
 };

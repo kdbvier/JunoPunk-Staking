@@ -5,7 +5,7 @@ import {
   HomeIcon,
   NftIcon,
   PaperIcon,
-  // TokenIcon,
+  TokenIcon,
 } from "./SvgIcons";
 import { MenuType } from "./types";
 
@@ -15,11 +15,11 @@ const Menus: MenuType[] = [
     title: "Dashboard",
     icon: HomeIcon,
   },
-  // {
-  //   id: "punkToken",
-  //   title: "$PunkDrop Checker",
-  //   icon: TokenIcon,
-  // },
+  {
+    id: PAGES.TOKENCHECKER,
+    title: "$PunkDrop Checker",
+    icon: TokenIcon,
+  },
   {
     id: PAGES.PUNKNFT,
     title: "Punk NFT",

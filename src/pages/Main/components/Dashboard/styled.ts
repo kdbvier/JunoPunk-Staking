@@ -88,7 +88,7 @@ export const ClaimCheckerContainer = styled.div`
   margin: 30px 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 `;
 

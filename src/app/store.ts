@@ -9,6 +9,7 @@ import storage from "redux-persist/lib/storage";
 import accountsSlice from "./accountsSlice";
 import tokenPricesSlice from "./tokenPricesSlice";
 import elementViewStateSlice from "./elementViewStateSlice";
+import nftsSlice from "./nftsSlice";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +19,7 @@ const persistConfig = {
 const reducer = persistReducer(
   persistConfig,
   combineReducers({
+    nfts: nftsSlice,
     accounts: accountsSlice,
     tokenPrices: tokenPricesSlice,
     elementViewState: elementViewStateSlice,
