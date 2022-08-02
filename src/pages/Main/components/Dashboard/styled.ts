@@ -84,10 +84,27 @@ export const AirDropImage = styled.div`
   height: 197px;
 `;
 
+export const ClaimChecker = styled.div`
+  margin: 30px;
+`;
+
+export const ClaimCheckerHeader = styled.div`
+  display: flex;
+  align-items: center;
+  color: #002cfa;
+  font-size: 17px;
+  font-weight: bold;
+  svg {
+    path {
+      fill: #002cfa;
+    }
+  }
+`;
+
 export const ClaimCheckerContainer = styled.div`
   margin: 30px 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: flex-start;
   flex-wrap: wrap;
 `;
