@@ -11,6 +11,7 @@ import {
 export interface InfoCardProps {
   title: string;
   contents: string[];
+  isFlexRow?: boolean;
   buttonOption?: {
     title: string;
     onClick?: () => {};
@@ -20,10 +21,11 @@ export interface InfoCardProps {
 const InfoCard: React.FC<InfoCardProps> = ({
   title,
   contents,
+  isFlexRow,
   buttonOption,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper flexDirection={isFlexRow ? "row" : "column"}>
       <InfoContainer>
         <InfoTitle>{title}</InfoTitle>
         {contents.map((content: string, index: number) => (

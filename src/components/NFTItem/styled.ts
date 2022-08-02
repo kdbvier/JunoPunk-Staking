@@ -15,12 +15,20 @@ const buttonColors: { [key: string]: string } = {
   Unstake: "#FF9100",
 };
 
+export const NoNFTsWrapper = styled.div`
+  color: #002cfa;
+`;
+
 export const NFTItemWrapper = styled.div<{ nftItemStatus: string }>`
   width: 250px;
   background-color: white;
   border: 5px solid
     ${({ nftItemStatus }) => borderColors[nftItemStatus] || "#FFFFFF"};
   position: relative;
+
+  & ~ ${NoNFTsWrapper} {
+    display: none;
+  }
 
   /* @media (max-width: 768px) {
     width: 200px;
@@ -71,11 +79,19 @@ export const NFTItemInfoContainer = styled.div`
   margin: 10px 15px;
 `;
 
-export const NFTItemInfo = styled.div`
-  font-size: 20px;
+export const NFTItemInfo = styled.div<{ fontSize?: string }>`
+  font-size: ${({ fontSize }) => fontSize || "20px"};
   font-weight: bold;
   color: black;
   text-align: left;
+  display: flex;
+  align-items: center;
+`;
+
+export const CoinIcon = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
 `;
 
 export const NFTItemOperationCell = styled.div`

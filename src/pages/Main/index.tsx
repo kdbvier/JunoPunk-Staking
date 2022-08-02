@@ -64,17 +64,21 @@ const Main: React.FC = () => {
           {/* <Token /> */}
           <NFTs
             title="Genesis PUNK NFT"
+            nftName="Genesis"
             options={{
               nftAddress: Contracts.nftContracts.genisis,
               stakingAddress: Contracts.stakingContracts.genisis,
+              marketplaceAddress: Contracts.marketplaceContracts.genisis,
               rarityData: punksRarityData,
             }}
           />
           <NFTs
             title="Martians PUNK NFT"
+            nftName="Martians"
             options={{
               nftAddress: Contracts.nftContracts.martians,
               stakingAddress: Contracts.stakingContracts.martians,
+              marketplaceAddress: Contracts.marketplaceContracts.martians,
               rarityData: punksRarityData1,
             }}
           />

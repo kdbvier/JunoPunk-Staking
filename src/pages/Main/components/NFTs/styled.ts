@@ -37,11 +37,13 @@ export const SubWrapper = styled.div`
 `;
 
 export const InfoContainer = styled.div<{ isMobile?: boolean }>`
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   grid-row-gap: 10px;
-  justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-start; 
+  justify-content: space-between;*/
+  display: flex;
+  justify-content: center;
   margin-bottom: 35px;
 `;
 
@@ -66,7 +68,7 @@ export const FooterBalance = styled(NormalText)`
 
 export const NftContainerTitle = styled.div`
   font-weight: 700;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 16px;
   text-align: left;
   color: #002cfa;
@@ -107,4 +109,25 @@ export const StyledButton = styled.button`
     opacity: 0.8;
     box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
   }
+`;
+
+export const NftTypeTabs = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+`;
+
+export const NftTypeTab = styled.div<{ selected: boolean }>`
+  margin-right: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #002cfa;
+  &:last-child {
+    margin-right: 0;
+  }
+  ${({ selected }) =>
+    selected &&
+    css`
+      font-weight: bold;
+    `}
 `;

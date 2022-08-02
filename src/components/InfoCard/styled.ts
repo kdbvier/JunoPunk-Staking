@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ flexDirection: string }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ flexDirection }) => flexDirection || "column"};
   align-items: center;
 `;
 
@@ -43,7 +43,7 @@ export const InfoContent = styled.div`
 
 export const StyledButton = styled.button`
   color: white;
-  margin-top: 15px;
+  margin: 15px;
   background-color: #40baff;
   width: max-content;
   height: 36px;

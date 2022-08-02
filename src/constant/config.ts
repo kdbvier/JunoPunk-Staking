@@ -40,7 +40,10 @@ export type ContractType = {
 };
 
 export const Contracts: {
-  [P in "nftContracts" | "stakingContracts"]: ContractType;
+  [P in
+    | "nftContracts"
+    | "stakingContracts"
+    | "marketplaceContracts"]: ContractType;
 } = {
   nftContracts: {
     genisis: "juno1e229el8t4lu4rx7xeekc77zspxa2gz732ld0e6a5q0sr0l3gm78stuvc5g",
@@ -50,4 +53,11 @@ export const Contracts: {
     genisis: "juno1m7uwvetjxr2efmlenvk2pzgsyzpnetlta95lx4rmmest6y0x8nvqh5he5k",
     martians: "juno1s0tewcu485syneth968n7hz3vx23t24k904j26ae3lw75vzv7d3qtg8sp3",
   },
+  marketplaceContracts: {
+    genisis: "juno1smf3u3qd4dc20cgsu7hsh95awxea0usw0q0jj2f3vmrykpk3ua4qn738hz",
+    martians: "",
+  },
 };
+
+export const MarketplaceContract =
+  "juno1vmj8fa943t8pz4ezpfrzl330caevlshq8r4pz9cwa6ey27wcxfpsa5fnwk";

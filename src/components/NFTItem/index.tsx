@@ -20,6 +20,8 @@ import {
   NFTItemTransferAddress,
   RarityRankContainer,
   RarityRankContent,
+  NoNFTsWrapper,
+  CoinIcon,
   // JunoWalletIndicator,
 } from "./styled";
 import { useAppSelector } from "../../app/hooks";
@@ -61,6 +63,8 @@ const getTokenIdNumber = (id: string): string => {
   if (!id) return "";
   return id.split(".").pop() || "";
 };
+
+export const NoNFTs = () => <NoNFTsWrapper>No NFTs</NoNFTsWrapper>;
 
 export default function NFTItem({
   id,
@@ -252,12 +256,19 @@ export default function NFTItem({
           {/* <NFTItemInfo>Juno Punks</NFTItemInfo> */}
           <NFTItemInfo>{item.token_id}</NFTItemInfo>
         </div>
-        <NFTItemInfo>
-          {hasPrice && +price.amount > 0
-            ? `${price.amount / 1e6} ${
-                price.denom === NFTPriceType.HOPE ? "HOPE" : "JUNO"
-              }`
-            : ""}
+        <NFTItemInfo fontSize="16px">
+          {hasPrice && +price.amount > 0 && (
+            <>
+              <CoinIcon
+                alt=""
+                src={`/images/coin-images/${price.denom.replace(
+                  /\//g,
+                  ""
+                )}.png`}
+              />
+              {price.amount / 1e6}
+            </>
+          )}
         </NFTItemInfo>
       </NFTItemInfoContainer>
       <NFTItemOperationContainer disabled={transferDisabled}>
