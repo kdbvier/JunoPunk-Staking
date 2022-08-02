@@ -13,6 +13,7 @@ import { updateElementViewState } from "../../app/elementViewStateSlice";
 
 import punksRarityData from "../../rank_reduce/junopunks.json";
 import punksRarityData1 from "../../rank_reduce/junopunks2.json";
+import ClaimChecker from "./components/ClaimChecker";
 
 export const CurrentTimeContext = createContext({
   currentTime: Number(new Date()),
@@ -59,6 +60,7 @@ const Main: React.FC = () => {
         <Sidebar />
         <MainContent id={PAGES.MAINCONTENT}>
           <Dashboard />
+          <ClaimChecker />
           {/* <Token /> */}
           <NFTs
             title="Genesis PUNK NFT"
