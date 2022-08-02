@@ -12,6 +12,7 @@ import { PAGES } from "../../constant/pages";
 import { updateElementViewState } from "../../app/elementViewStateSlice";
 
 import punksRarityData from "../../rank_reduce/junopunks.json";
+import punksRarityData1 from "../../rank_reduce/junopunks2.json";
 
 export const CurrentTimeContext = createContext({
   currentTime: Number(new Date()),
@@ -60,10 +61,19 @@ const Main: React.FC = () => {
           <Dashboard />
           {/* <Token /> */}
           <NFTs
+            title="Genesis PUNK NFT"
             options={{
               nftAddress: Contracts.nftContracts.genisis,
               stakingAddress: Contracts.stakingContracts.genisis,
               rarityData: punksRarityData,
+            }}
+          />
+          <NFTs
+            title="Martians PUNK NFT"
+            options={{
+              nftAddress: Contracts.nftContracts.martians,
+              stakingAddress: Contracts.stakingContracts.martians,
+              rarityData: punksRarityData1,
             }}
           />
         </MainContent>

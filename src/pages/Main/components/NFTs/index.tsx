@@ -31,6 +31,7 @@ import {
 } from "./styled";
 
 interface NFTsProps {
+  title: string;
   options: {
     nftAddress: string;
     stakingAddress: string;
@@ -40,6 +41,7 @@ interface NFTsProps {
 
 const NFTs: React.FC<NFTsProps> = ({
   // tokens, fetchNfts,
+  title,
   options,
 }) => {
   const [stakedNfts, setStakedNfts] = useState([]);
@@ -193,7 +195,7 @@ const NFTs: React.FC<NFTsProps> = ({
   return (
     <Wrapper id={PAGES.PUNKNFT}>
       <TitleBar>
-        <MainTitle>$PUNK NFTs</MainTitle>
+        <MainTitle>{title}</MainTitle>
         <SubTitle>
           Unstaking Period 27 Days | Weekly Payout All Monday 08:00 UTC
         </SubTitle>
