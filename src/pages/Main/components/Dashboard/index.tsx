@@ -116,7 +116,7 @@ const Dashboard: React.FC = () => {
               onClick={() =>
                 handleClaimAirdrop(
                   Contracts.nftContracts.martians,
-                  Contracts.nftContracts.martians
+                  Contracts.stakingContracts.martians
                 )
               }
             >
