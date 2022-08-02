@@ -70,6 +70,7 @@ export const NftContainerTitle = styled.div`
   line-height: 16px;
   text-align: left;
   color: #002cfa;
+  margin: 20px 0;
 `;
 
 export const NftContainer = styled.div`

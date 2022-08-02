@@ -33,8 +33,6 @@ import {
   NftItemContent,
 } from "./styled";
 
-const MAX_COUNT = 500;
-
 const ClaimCheckOption = [
   {
     title: "Find your Genesis Punks",
@@ -43,6 +41,7 @@ const ClaimCheckOption = [
     stakingAddress: Contracts.stakingContracts.genisis,
     imageBaseUrl:
       "https://hopegalaxy.mypinata.cloud/ipfs/Qmbsmj4q3cAZdqkFvFBq4zBrHtzXf4FzDTMQQm9MHcB2yb",
+    maxCount: 500,
   },
   {
     title: "Find your Martians Punks",
@@ -51,6 +50,7 @@ const ClaimCheckOption = [
     stakingAddress: Contracts.stakingContracts.martians,
     imageBaseUrl:
       "https://hopegalaxy.mypinata.cloud/ipfs/QmWFWZh2cqGPrCpsMeqvsxrjZjKz8WckbuRmmq9hRAXfFe",
+    maxCount: 1000,
     forbiddenIds: [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 18, 19, 20, 21, 22, 23, 24,
       25, 26, 27, 30, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46, 47,
@@ -205,13 +205,17 @@ const Dashboard: React.FC = () => {
     toast.success("Successfully claimed!");
   };
 
-  const handleChangeSearchTokenId = (e: any, nftAddress: string) => {
+  const handleChangeSearchTokenId = (
+    e: any,
+    nftAddress: string,
+    maxCount: number
+  ) => {
     const { value } = e.target;
     const number = Number(value.split(".").pop());
     if (isNaN(number)) return;
     setTokenIdNumber((prev) => ({
       ...prev,
-      [nftAddress]: number ? "" + Math.min(number, MAX_COUNT) : "",
+      [nftAddress]: number ? "" + Math.min(number, maxCount) : "",
     }));
   };
 
@@ -325,7 +329,11 @@ const Dashboard: React.FC = () => {
                         tokenIdNumber[item.nftAddress] || ""
                       }`}
                       onChange={(e) =>
-                        handleChangeSearchTokenId(e, item.nftAddress)
+                        handleChangeSearchTokenId(
+                          e,
+                          item.nftAddress,
+                          item.maxCount
+                        )
                       }
                       onKeyUp={(e) =>
                         handleKeyUp(
