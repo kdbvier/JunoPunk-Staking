@@ -139,23 +139,12 @@ const Dashboard: React.FC = () => {
     }: { nftAddress: string; stakingAddress: string }
   ): Promise<boolean> => {
     if (!nftAddress || !stakingAddress) return false;
-    console.log(nftAddress, {
-      all_nft_info: {
-        token_id: tokenId,
-      },
-    });
     const tokens: any = await runQuery(nftAddress, {
       all_nft_info: {
         token_id: tokenId,
       },
     });
     const address = tokens?.access?.owner;
-    console.log(stakingAddress, {
-      get_claim_amount: {
-        id: [tokenId],
-        address,
-      },
-    });
     const claimAmount = await runQuery(stakingAddress, {
       get_claim_amount: {
         id: [tokenId],

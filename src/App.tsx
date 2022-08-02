@@ -10,6 +10,7 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import junoPresets from "./constant/junoPresets";
 import Main from "./pages/Main";
+import Updater from "./app/Updater";
 
 // const history = createBrowserHistory();
 
@@ -31,6 +32,7 @@ function App() {
         icons: [`${window.location.origin}/logo.png`],
       }}
     >
+      <Updater />
       <div className="main">
         <Main />
         <ToastContainer

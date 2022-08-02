@@ -10,14 +10,12 @@ import { PersistGate } from "redux-persist/es/integration/react";
 
 import "font-awesome/css/font-awesome.css";
 import { RefreshContextProvider } from "./context/RefreshContext";
-import Updater from "./app/Updater";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RefreshContextProvider>
-          <Updater />
           <App />
         </RefreshContextProvider>
       </PersistGate>
