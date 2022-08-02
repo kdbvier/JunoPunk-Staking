@@ -36,6 +36,7 @@ export interface NFTItemProps {
   options: {
     nftAddress: string;
     stakingAddress: string;
+    imageBaseUrl: string;
   };
 }
 
@@ -83,9 +84,7 @@ export default function NFTItem({
   const tokenIdNumber = Number(getTokenIdNumber(item.token_id) || 0);
   const tokenRarityRank = rarityRanks?.[tokenIdNumber];
 
-  const url = `https://hopegalaxy.mypinata.cloud/ipfs/Qmbsmj4q3cAZdqkFvFBq4zBrHtzXf4FzDTMQQm9MHcB2yb/${
-    id.split(".").pop() || ""
-  }.png`;
+  const url = `${options.imageBaseUrl}/${id.split(".").pop() || ""}.png`;
   const price = item?.list_price || {};
   const hasPrice = !!price.amount && !!price.denom;
 

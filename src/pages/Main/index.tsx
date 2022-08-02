@@ -70,6 +70,8 @@ const Main: React.FC = () => {
               stakingAddress: Contracts.stakingContracts.genisis,
               marketplaceAddress: Contracts.marketplaceContracts.genisis,
               rarityData: punksRarityData,
+              imageBaseUrl:
+                "https://hopegalaxy.mypinata.cloud/ipfs/Qmbsmj4q3cAZdqkFvFBq4zBrHtzXf4FzDTMQQm9MHcB2yb",
             }}
           />
           <NFTs
@@ -80,6 +82,8 @@ const Main: React.FC = () => {
               stakingAddress: Contracts.stakingContracts.martians,
               marketplaceAddress: Contracts.marketplaceContracts.martians,
               rarityData: punksRarityData1,
+              imageBaseUrl:
+                "https://hopegalaxy.mypinata.cloud/ipfs/QmWFWZh2cqGPrCpsMeqvsxrjZjKz8WckbuRmmq9hRAXfFe",
             }}
           />
         </MainContent>

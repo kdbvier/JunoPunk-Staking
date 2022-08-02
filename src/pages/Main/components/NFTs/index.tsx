@@ -41,6 +41,7 @@ interface NFTsProps {
     stakingAddress: string;
     marketplaceAddress: string;
     rarityData: any;
+    imageBaseUrl: string;
   };
 }
 
@@ -355,6 +356,7 @@ const NFTs: React.FC<NFTsProps> = ({
               options={{
                 nftAddress: options.nftAddress,
                 stakingAddress: options.stakingAddress,
+                imageBaseUrl: options.imageBaseUrl,
               }}
             />
           ))}
@@ -371,6 +373,7 @@ const NFTs: React.FC<NFTsProps> = ({
               options={{
                 nftAddress: options.nftAddress,
                 stakingAddress: options.stakingAddress,
+                imageBaseUrl: options.imageBaseUrl,
               }}
             />
           ))}
@@ -387,6 +390,7 @@ const NFTs: React.FC<NFTsProps> = ({
               options={{
                 nftAddress: options.nftAddress,
                 stakingAddress: options.stakingAddress,
+                imageBaseUrl: options.imageBaseUrl,
               }}
             />
           ))}
@@ -403,6 +407,7 @@ const NFTs: React.FC<NFTsProps> = ({
               options={{
                 nftAddress: options.nftAddress,
                 stakingAddress: options.stakingAddress,
+                imageBaseUrl: options.imageBaseUrl,
               }}
             />
           ))}
