@@ -29,7 +29,25 @@ const Dashboard: React.FC = () => {
   const account = useAppSelector((state) => state.accounts.keplr);
   const tokens = useAppSelector((state) => state.nfts);
 
-  const getClaimAmount = useCallback(
+  const getClaimAmountForGenesis = useCallback(
+    async (tokens: any, address: string, stakingAddress: string) => {
+      if (address && tokens) {
+        const rewards = await runQuery(stakingAddress, {
+          get_claim_amount: {
+            id: tokens,
+            address: address,
+          },
+        });
+        setRewardsAirdrop((prev) => ({
+          ...prev,
+          [stakingAddress]: rewards,
+        }));
+      }
+    },
+    [runQuery]
+  );
+
+  const getClaimAmountForMartians = useCallback(
     async (tokens: any, address: string, stakingAddress: string) => {
       if (address && tokens) {
         const rewards = await runQuery(stakingAddress, {
@@ -49,22 +67,28 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     if (account && tokens[Contracts.nftContracts.genisis]) {
-      getClaimAmount(
+      getClaimAmountForGenesis(
         tokens[Contracts.nftContracts.genisis].tokens,
         account.address,
         Contracts.stakingContracts.genisis
       );
     }
     if (account && tokens[Contracts.nftContracts.martians]) {
-      getClaimAmount(
+      getClaimAmountForMartians(
         tokens[Contracts.nftContracts.martians].tokens,
         account.address,
         Contracts.stakingContracts.martians
       );
     }
-  }, [runQuery, account, tokens, getClaimAmount]);
+  }, [
+    runQuery,
+    account,
+    tokens,
+    getClaimAmountForGenesis,
+    getClaimAmountForMartians,
+  ]);
 
-  const handleClaimAirdrop = async (
+  const handleClaimAirdropForGenesis = async (
     nftAddress: string,
     stakingAddress: string
   ) => {
@@ -76,7 +100,25 @@ const Dashboard: React.FC = () => {
         token_id: crrTokens.tokens,
       },
     });
-    getClaimAmount(crrTokens.tokens, account.address, stakingAddress);
+    getClaimAmountForGenesis(crrTokens.tokens, account.address, stakingAddress);
+    toast.success("Successfully claimed!");
+  };
+
+  const handleClaimAirdropForMartians = async (
+    nftAddress: string,
+    stakingAddress: string
+  ) => {
+    const crrTokens = tokens[nftAddress];
+    if (!account || !crrTokens) return;
+
+    await runExecute(stakingAddress, {
+      get_reward: {},
+    });
+    getClaimAmountForMartians(
+      crrTokens.tokens,
+      account.address,
+      stakingAddress
+    );
     toast.success("Successfully claimed!");
   };
 
@@ -97,7 +139,7 @@ const Dashboard: React.FC = () => {
                 !Number(rewardsAirdrop[Contracts.stakingContracts.genisis])
               }
               onClick={() =>
-                handleClaimAirdrop(
+                handleClaimAirdropForGenesis(
                   Contracts.nftContracts.genisis,
                   Contracts.stakingContracts.genisis
                 )
@@ -114,7 +156,7 @@ const Dashboard: React.FC = () => {
                 !Number(rewardsAirdrop[Contracts.stakingContracts.martians])
               }
               onClick={() =>
-                handleClaimAirdrop(
+                handleClaimAirdropForMartians(
                   Contracts.nftContracts.martians,
                   Contracts.stakingContracts.martians
                 )

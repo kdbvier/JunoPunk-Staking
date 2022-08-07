@@ -16,7 +16,7 @@ export const ClaimCheckerHeader = styled.div`
   display: flex;
   align-items: center;
   color: #002cfa;
-  font-size: 17px;
+  font-size: 30px;
   font-weight: bold;
   svg {
     path {

@@ -42,6 +42,7 @@ interface NFTsProps {
     marketplaceAddress: string;
     rarityData: any;
     imageBaseUrl: string;
+    totalCount: number;
   };
 }
 
@@ -323,7 +324,7 @@ const NFTs: React.FC<NFTsProps> = ({
         </InfoContainer>
         <FooterBar isMobile={isMobile}>
           <FooterContent>Total Punks Staked NFT</FooterContent>
-          <FooterBalance>{`${totalStaked}/500`}</FooterBalance>
+          <FooterBalance>{`${totalStaked}/${options.totalCount}`}</FooterBalance>
         </FooterBar>
       </SubWrapper>
       {/* <NftContainerTitle>My NFTs</NftContainerTitle> */}

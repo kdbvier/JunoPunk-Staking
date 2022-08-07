@@ -70,6 +70,7 @@ const Main: React.FC = () => {
               stakingAddress: Contracts.stakingContracts.genisis,
               marketplaceAddress: Contracts.marketplaceContracts.genisis,
               rarityData: punksRarityData,
+              totalCount: 500,
               imageBaseUrl:
                 "https://hopegalaxy.mypinata.cloud/ipfs/Qmbsmj4q3cAZdqkFvFBq4zBrHtzXf4FzDTMQQm9MHcB2yb",
             }}
@@ -82,6 +83,7 @@ const Main: React.FC = () => {
               stakingAddress: Contracts.stakingContracts.martians,
               marketplaceAddress: Contracts.marketplaceContracts.martians,
               rarityData: punksRarityData1,
+              totalCount: 260,
               imageBaseUrl:
                 "https://hopegalaxy.mypinata.cloud/ipfs/QmWFWZh2cqGPrCpsMeqvsxrjZjKz8WckbuRmmq9hRAXfFe",
             }}
