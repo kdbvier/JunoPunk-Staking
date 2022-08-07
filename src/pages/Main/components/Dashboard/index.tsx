@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useAppSelector } from "../../../../app/hooks";
 import Chart from "../../../../components/Chart";
 import TokenPrice from "../../../../components/TokenPrice";
-import { Contracts } from "../../../../constant/config";
+import { AirdropContract, Contracts } from "../../../../constant/config";
 import { PAGES } from "../../../../constant/pages";
 import useContract from "../../../../hooks/useContract";
 import useMatchBreakpoints from "../../../../hooks/useMatchBreakpoints";
@@ -50,9 +50,8 @@ const Dashboard: React.FC = () => {
   const getClaimAmountForMartians = useCallback(
     async (tokens: any, address: string, stakingAddress: string) => {
       if (address && tokens) {
-        const rewards = await runQuery(stakingAddress, {
+        const rewards = await runQuery(AirdropContract, {
           get_claim_amount: {
-            id: tokens,
             address: address,
           },
         });
@@ -111,7 +110,7 @@ const Dashboard: React.FC = () => {
     const crrTokens = tokens[nftAddress];
     if (!account || !crrTokens) return;
 
-    await runExecute(stakingAddress, {
+    await runExecute(AirdropContract, {
       get_reward: {},
     });
     getClaimAmountForMartians(
