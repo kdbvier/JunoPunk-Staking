@@ -304,7 +304,7 @@ const NFTs: React.FC<NFTsProps> = ({
       <TitleBar>
         <MainTitle>{title}</MainTitle>
         <SubTitle>
-          Unstaking Period 27 Days | Weekly Payout All Monday 08:00 UTC
+          Unstaking Period 27 Days | Weekly Payout All Monday 19:00 UTC
         </SubTitle>
       </TitleBar>
       <SubWrapper>
