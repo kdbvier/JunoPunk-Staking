@@ -60,7 +60,7 @@ export const Contracts: {
 };
 
 export const MarketplaceContract =
-  "juno1vmj8fa943t8pz4ezpfrzl330caevlshq8r4pz9cwa6ey27wcxfpsa5fnwk";
+  "juno14umelpxlujja7lysyhufqdp2rlzyuvlek3lgz0v54wp0gyvwnp4s7f3sgs";
 
 export const AirdropContract =
   "juno1g9luc4282gx9mdexpfzx94xd9tr223wa8jemm77gmjtmrywq2mgsvpm0mz";
